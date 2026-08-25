@@ -1,0 +1,117 @@
+{
+  "info": {
+    "name": "API Flota Vehicular - Juan Diego (UNIMINUTO)",
+    "description": "Colección de pruebas para la API REST de Flota Vehicular",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Prueba 01 - Crear Registro Válido (201 Created)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"placa\": \"NIS-001\",\n  \"marca\": \"Nissan\",\n  \"modelo\": \"Frontier Pro4X\",\n  \"anio_fabricacion\": 2023,\n  \"kilometraje\": 24500.0,\n  \"tarifa_diaria\": 139.99,\n  \"en_servicio\": true,\n  \"ultimo_mantenimiento\": \"2026-02-15T10:30:00Z\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8001/api/vehiculos/",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8001",
+          "path": ["api", "vehiculos", ""]
+        }
+      }
+    },
+    {
+      "name": "Prueba 02 - Validaciones Activas (400 Bad Request)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"placa\": \"INV#99\",\n  \"marca\": \"Chevrolet\",\n  \"modelo\": \"Spark GT\",\n  \"anio_fabricacion\": 1985,\n  \"tarifa_diaria\": -50.0,\n  \"en_servicio\": true\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8001/api/vehiculos/",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8001",
+          "path": ["api", "vehiculos", ""]
+        }
+      }
+    },
+    {
+      "name": "Prueba 03 - Búsqueda por Texto (200 OK)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8001/api/vehiculos/?search=Toyota",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8001",
+          "path": ["api", "vehiculos", ""],
+          "query": [
+            { "key": "search", "value": "Toyota" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prueba 04 - Ordenamiento Descendente (200 OK)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8001/api/vehiculos/?ordering=-tarifa_diaria",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8001",
+          "path": ["api", "vehiculos", ""],
+          "query": [
+            { "key": "ordering", "value": "-tarifa_diaria" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prueba 05 - Endpoint Personalizado (200 OK)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8001/api/vehiculos/mantenimiento_urgente/",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8001",
+          "path": ["api", "vehiculos", "mantenimiento_urgente", ""]
+        }
+      }
+    },
+    {
+      "name": "Prueba 06 - Actualización Parcial (200 OK)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tarifa_diaria\": 165.50,\n  \"kilometraje\": 26000.00\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8001/api/vehiculos/1/",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8001",
+          "path": ["api", "vehiculos", "1", ""]
+        }
+      }
+    }
+  ]
+}
