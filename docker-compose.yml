@@ -3,7 +3,7 @@ services:
     build: .
     container_name: api_flota_juandiego
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - .:/app
     environment:
