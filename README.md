@@ -27,12 +27,18 @@
 ---
 
 ## 4. Instrucciones para Levantar el Proyecto en Local
-Ejecuta los siguientes 3 comandos en tu terminal desde la raíz del proyecto:
 
+### Opción A — Con Docker (Recomendado, 1 solo comando):
 ```bash
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+docker compose up --build
 ```
-
 La API quedará disponible en `http://127.0.0.1:8000/api/vehiculos/`.
+
+---
+
+### Opción B — Con Entorno Virtual de Python:
+```bash
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate && python manage.py runserver
+```
